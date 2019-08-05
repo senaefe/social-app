@@ -1,0 +1,84 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<body class="signin-body"sstyle='background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHaKrv_ZRJTifmTAiQYUxTjf_r-UkgAmRLP6oNR3I-UJGLynI4"); background-size: 100% 100%; '></body>
+
+
+<div class="container">
+
+<hr>
+
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<header class="sm jumbotron center-align">
+    <h2>User Registration</h2>
+	<!-- <a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+	<h4 class="card-title mt-2">Sign up</h4> -->
+</header>
+<article class="card-body">
+	    <div class="row">
+				<div class="col-sm-12 col-mg-8">
+				<div class="card-singin-card">
+				<div class="card-block"> 
+<form  [formGroup]="userAddForm" (ngSubmit)="add()" autocomplete="on">
+	<div class="form-row">
+		<div class="col form-group">
+			 
+		  	<input   formControlName="firstName" name="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
+		</div> <!-- form-group end.// -->
+
+		<div class="alert alert-danger" *ngIf="userAddForm.get('firstName').hasError('required') && userAddForm.get('firstName').dirty">isim zorunludur</div>
+
+
+			<div class="col form-group">
+			<input  formControlName="lastName"  name="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name ">
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row end.// -->
+	
+	<div class="alert alert-danger" *ngIf="userAddForm.get('lastName').hasError('required') && userAddForm.get('lastName').dirty">soy isim zorunludur</div>
+
+
+    <div class="col form-group">
+	 <input formControlName="userName"  name="userName" id="userName" type="text" class="form-control" placeholder="User Name" required>
+	</div> <!-- form-group end.// -->
+	
+	<div class="alert alert-danger" *ngIf="userAddForm.get('userName').hasError('required') && userAddForm.get('userName').dirty">kullanıcı isim zorunludur</div>
+
+
+	<div class="form-group">
+	<input  formControlName="email" name="email" id="email" type="email" class="form-control" placeholder="Email" required>
+		<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div> <!-- form-group end.// -->
+   
+	<div class="alert alert-danger" *ngIf="userAddForm.get('email').hasError('required') && userAddForm.get('email').dirty">email zorunludur</div>
+	
+	<div class="form-group">
+		<input formControlName="password" name="password" id="password" class="form-control" type="password" placeholder="Password" required minlength="4">
+       
+	</div> <!-- form-group end.// -->  
+    <div class="form-group">
+        <button  type="submit" class="btn btn-primary btn-block"  [disabled]="userAddForm.invalid"> Register  </button>
+    </div> <!-- form-group// -->      
+   
+</form>
+				</div>
+			</div>
+		</div>
+	</div>
+		</article> <!-- card-body end .// -->
+<div  class="border-top card-body text-center">Have an account? <a href="/login">Log In</a></div>
+</div> <!-- card.// -->
+</div> <!-- col.//-->
+
+</div> <!-- row.//-->
+
+
+</div> 
+<!--container end.//-->
+
+

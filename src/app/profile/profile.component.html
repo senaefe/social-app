@@ -1,0 +1,303 @@
+<html>
+<app-navbar></app-navbar>
+<section>
+
+  <!------ Include the above in your HEAD tag ---------->
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-mg-3">
+
+        <div class="card hovercard">
+          <div class="cardheader">
+
+          </div>
+          <div class="avatar">
+            <img alt="" src="{{user?.url2}}">
+          </div>
+          <div class="info">
+            <div class="title">
+              <!-- <a target="_blank" href="https://scripteden.com/">Script Eden</a> -->
+            </div>
+            <div class="desc">{{user.firstName}} {{user.lastName}}</div>
+            <div class="desc">{{user.email}}</div>
+          </div>
+          <div class="bottom">
+            <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a class="btn btn-danger btn-sm" rel="publisher" href="https://plus.google.com/+ahmshahnuralam">
+              <i class="fa fa-google-plus"></i>
+            </a>
+            <a class="btn btn-primary btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+              <i class="fa fa-behance"></i>
+            </a>
+            <button class="btn btn-primary" (click)="updateUser()"><i class="fa-user-edit ">C</i></button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- <input
+  style="display: none"
+  type="file" (change)="deneme($event)"
+  #fileInput> -->
+  <!-- <button (click)="fileInput.click()">Select File</button> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default friends">
+          <div style="text-align:center" size="44px" face="Helvetica">
+            <h4 style="color: #000080">Best Friends List</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-inline" *ngIf="!userIn">
+              <li *ngFor="let liste of userInformation" class="list-inline-item"><span><img  (click)="visitProfile(liste?.id)" width="40" height="40"
+                    [src]="liste?.url2" />
+                  <div class="friend_name">
+                    {{liste?.firstName}} {{liste?.lastName}}</div>
+                  </span></li>
+
+
+            </ul>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let post of myPosts; let i = index" [attr.data-post.texts]="i" class="panel panel-default post">
+    <div class="panel-body">
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-lg-2">
+          <a href="/profile/id" (click)="visitProfile()" class="post-avatar thumbnail"><img [src]="user?.url2"  width="60" height="80"
+              alt="">
+            <div class="text-center">{{post.user?.firstName}} {{post.user?.lastName}}</div>
+          </a>
+          <div class="likes text-center">{{post.numberoflikes}} likes </div>
+          <div class="likes text-center">{{ post.postDate | date:'medium' }}</div>
+        </div>
+        <div class="col-lg-12 col-lg-6">
+          <div class="bubble">
+            <div class="pointer">
+              <p>{{post.texts}}</p>
+            </div>
+            <div class="pointer-border"></div>
+          </div>
+          <button *ngIf="!post?.isLiked" id="btn-like{{i}}" name="btn-like{{i}}" mat-icon-button aria-label="Example"
+            style="color: rgb(192,192,192)" (click)="likebutton(post)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="post.isLiked" id="btn-like2{{i}}" name="btn-like2{{i}}" mat-icon-button aria-label="Exampl2e"
+            style="color: rgb(206, 20, 20);" (click)="likebutton(post)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+
+          <div class="comment-form">
+            <form [formGroup]="commentAddForm" (ngSubmit)="addComment(post)" class="form-inline">
+              <div class="form-group">
+                <input type="text" formControlName="comment" class="form-control" placeholder="enter comment">
+              </div>
+              <button class="btn btn-primary" (click)="updateUser()"><i class="fa-user-edit ">Add</i></button>
+            </form>
+          </div>
+          <div class="comments">
+            <!-- <div class="comment">
+                <a href="#" class="comment-avatar pull-left"><img  alt=""></a>
+                <div class="comment-text">
+                  <p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
+                </div>
+              </div> -->
+            <div class="clearfix"></div>
+            <div>
+              <!-- <a href="/profile/id"(click)="visitProfile()" class="active" class="post-avatar thumbnail"><img [src]="post.user?.url2" alt=""> -->
+              <div class="form-group">
+                <div class=comment-text>
+
+                  <div class="comment" *ngFor="let yorum of post.comments">
+                    <span (click)="visitProfile(yorum?.user.id)" class="comment-avatar pull-left"><img [src]="yorum.user?.url2" alt=""></span>
+                    <p style="color:rgb(55, 0, 255)"> {{yorum?.user?.firstName}}
+                      {{yorum?.user?.lastName}}</p>
+                    <div class="comment-text">
+                      <p>{{yorum?.comment}}</p>
+                    </div>
+                  </div>
+                  <!-- <p>I am just going to paste in a paragraph, then we will add another clearfix.</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<form>
+    <div class="form-group">
+<div *ngIf="updateForm" class="details">
+  <h3>Update User Information</h3>
+  <table  style="width: 95%" class="table table-striped table-responsive-md btn-table"> 
+      <thead>
+
+      <td><img src="../assets/img/user.png" width="50" height="50" alt=""></td>
+      <td><input [(ngModel)]="user.url2" name="url2" placeholder="url2"></td>
+      <td>First Name: </td>
+      <td><input [(ngModel)]="user.firstName" name="firstName"></td>
+      <td>Last Name: </td>
+      <td><input [(ngModel)]="user.lastName" name="lastName"></td>
+      <td>User Name: </td>
+      <td><input [(ngModel)]="user.userName" name="userName" placeholder="userName"></td>
+      <td>Email </td>
+      <td><input [(ngModel)]="user.email" name="email" placeholder="email"></td>
+      <td>Password</td>
+      <td><input [(ngModel)]="user.password" name="password" placeholder="password"></td>
+      <td><button type="submit" class="btn btn-primary" (click)="save(user.id)">Save</button></td>
+    </thead>
+  </table>
+
+  <!-- <button (click)="goBack()">Go back</button> -->
+</div>
+</div>
+</form>
+<article>
+    <footer>
+        <p>© 2019 Facebook</p>
+    </footer>
+</article>
+</html>
+
+
+
+
+
+<!------Y O R U M --------------->
+
+<!-- <div class="panel panel-default groups">
+            <div class="panel-heading">
+              <h3 class="panel-title">Latest Groups</h3>
+            </div>
+            <div class="panel-body">
+              <div class="group-item">
+                <img src="../assets/img/group.png" alt="">
+                <h4><a href="#" class="">Sample Group One</a></h4>
+                <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+              </div>
+              <div class="clearfix"></div>
+              <div class="group-item">
+                <img src="../assets/img/group.png" alt="">
+                <h4><a href="#" class="">Sample Group Two</a></h4>
+                <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+              </div>
+              <div class="clearfix"></div>
+              <div class="group-item">
+                <img src="../assets/img/group.png" alt="">
+                <h4><a href="#" class="">Sample Group Three</a></h4>
+                <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+              </div>
+              <div class="clearfix"></div>
+              <a href="#" class="btn btn-primary">View All Groups</a>
+            </div>
+          </div> -->
+
+
+<!-- <div class="panel panel-default post">
+      <div class="panel-body">
+         <div class="row">
+           <div class="col-sm-2">
+             <a href="profile.html" class="post-avatar thumbnail"><img  [src]='user.url2' alt="">
+              <div class="text-center">{{post.userid.firstName}} {{post.userid.lastName}}</div>
+            </a>
+            <div class="likes text-center">{{post.numberoflikes}} likes </div>
+            <div class="likes text-center">{{ post.postDate | date:'medium' }}</div>
+           </div>
+           <div class="col-sm-10">
+             <div class="bubble">
+               <div class="pointer">
+                 <p>{{post.texts}}</p>
+               </div>
+               <div class="pointer-border"></div>
+             </div>
+             <button id="fav-btn{{i}}" name="fav-btn{{i}}" mat-icon-button aria-label="Example icon-button with a heart icon" [ngStyle]="{ 'color': color }" (click)="likebutton(post)">
+                <mat-icon>favorite</mat-icon></button> -->
+<!-- <p class="post-actions"><a href="#">Comment</a> - <a href="#">Like</a> - <a href="#">Follow</a> - <a href="#">Share</a></p> -->
+<!-- <div class="comment-form">
+               <form class="form-inline">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="enter comment">
+                </div>
+                <button type="submit" class="btn btn-default">Add</button>
+              </form>
+             </div>
+             <div class="clearfix"></div>
+
+             <div class="comments">
+               <div class="comment">
+                 <a href="#" class="comment-avatar pull-left"><img src="../assets/img/user.png" alt=""></a>
+                 <div class="comment-text">
+                   <p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
+                 </div>
+               </div>
+               <div class="clearfix"></div>
+               <div class="comment">
+                 <a href="#" class="comment-avatar pull-left"><img src="../assets/img/user.png" alt=""></a>
+                 <div class="comment-text">
+                   <p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
+                 </div>
+               </div>
+               <div class="clearfix"></div>
+             </div>
+           </div>
+         </div>
+      </div>
+    </div> -->
+
+
+<!-- <div class="col-lg-4">
+    <div class="card friends">
+      <div class="card-heading">
+        <h6 class="card-title">My Friends</h6>
+      </div>
+      <div class="card-body">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a class="thumbnail" href="profile.html">
+              <img src="img/user.png" class="img-thumbnail">
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="thumbnail" href="profile.html">
+              <img src="img/user"...>
+            </div>
+            </div>
+            </div> -->
+
+<!-- <div ng2FileDrop
+                           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                           (fileOver)="fileOverBase($event)"
+                           [uploader]="uploader"
+                           class="well my-drop-zone">
+                          Base drop zone
+                      </div> -->
+
+<!-- <div ng2FileDrop
+                           [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
+                           (fileOver)="fileOverAnother($event)"
+                           [uploader]="uploader"
+                           class="well my-drop-zone">
+                          Another drop zone
+                      </div> -->
+
+<!-- Multiple
+                      <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+           
+                      Single
+                      <input type="file" ng2FileSelect [uploader]="uploader" /> -->

@@ -1,0 +1,63 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+<hr>
+
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<header class="sm jumbotron center-align">
+    <h2>User Registration</h2>
+	<!-- <a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+	<h4 class="card-title mt-2">Sign up</h4> -->
+</header>
+<article class="card-body">
+<form [formGroup]="userAddForm" (ngSubmit)="add()" class="form-group"  >
+	<div class="form-row">
+		<div class="col form-group">
+			 
+		  	<input   formControlName="name" name="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
+		</div> <!-- form-group end.// -->
+		<div class="col form-group">
+			
+		  	<input  formControlName="name" name="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name ">
+		</div> <!-- form-group end.// -->
+    </div> <!-- form-row end.// -->
+    <div class="col form-group">
+           
+          <input    name="userName" id="userName" type="text" class="form-control" placeholder="User Name" required>
+    </div> <!-- form-group end.// -->
+	<div class="form-group">
+		
+		<input    name="email" id="email" type="email" class="form-control" placeholder="Email" required>
+		<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div> <!-- form-group end.// -->
+    <div class="form-group">
+		
+        <input  name="password" id="password" class="form-control" type="password" placeholder="Password" required minlength="4">
+       
+	</div> <!-- form-group end.// -->  
+    <div class="form-group">
+        <button   type="submit" class="btn btn-primary btn-block" (click)="registerUser()"> Register  </button>
+    </div> <!-- form-group// -->      
+    <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+</form>
+</article> <!-- card-body end .// -->
+<div class="border-top card-body text-center">Have an account? <a href="/login">Log In</a></div>
+</div> <!-- card.// -->
+</div> <!-- col.//-->
+
+</div> <!-- row.//-->
+
+
+</div> 
+<!--container end.//-->
+

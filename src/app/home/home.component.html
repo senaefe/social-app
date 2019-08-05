@@ -1,0 +1,172 @@
+<app-navbar></app-navbar>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-10">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Wall</h3>
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="postAddForm" (ngSubmit)="addPost()">
+              <div class="form-group">
+                <textarea formControlName="texts" name="texts" id="texts" class="form-control"
+                  placeholder="Write on the wall"></textarea>
+              </div>
+              <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+              <div class="pull-right">
+                <div class="btn-toolbar">
+                  <button type="submit" (click)="getPost()" class="btn btn-primary btn-block"><i
+                      class="fa fa-pencil"></i>Share</button>
+                  <!-- <button type="submit" class="btn btn-default"><i class="fa fa-file-image-o"></i>Image</button>
+                  <button type="submit" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video</button> -->
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- *ngFor=" let post of posts;let i=index" -->
+        </div>
+        <div *ngFor="let post of posts; let i = index" [attr.data-post.texts]="i" class="panel panel-default post">
+          <div class="panel-body">
+           <div class="row">
+              <div class="col-sm-2">
+                <!-- <a href="profile.html" class="post-avatar thumbnail"><img [src]='user.url2' alt=""> -->
+                <span (click)="visitProfile(post.userid)" class="active" class="post-avatar thumbnail"><img
+                    [src]="post.user?.url2" alt="">
+                  <div class="text-center">{{post.user?.firstName}} {{post.user?.lastName}}
+
+                  </div>
+                </span>
+                <div class="likes text-center">{{post.numberoflikes}} likes </div>
+                <div class="likes text-center">{{ post.postDate | date:'medium' }}</div>
+              </div>
+              <div class="col-sm-10">
+                <div class="bubble">
+                  <div class="pointer">
+                    <p>{{post.texts}}</p>
+                  </div>
+                  <div class="pointer-border"></div>
+                </div>
+
+                <!-- (dblclick)="dislikebutton()" -->
+                <!-- <button type="button" onclick="likebutton(post.getElementById('')).style.color = 'red'">TIKLA</button> -->
+                <button *ngIf="!post?.isLiked" id="btn-like{{i}}" name="btn-like{{i}}" mat-icon-button
+                  aria-label="Example" style="color: rgb(192,192,192)" (click)="likebutton(post)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button *ngIf="post.isLiked" id="btn-like2{{i}}" name="btn-like2{{i}}" mat-icon-button
+                  aria-label="Exampl2e" style="color: rgb(206, 20, 20);" (click)="likebutton(post)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <!-- <p>{{post.userid.userName}} postu beğendi</p> -->
+                <!-- <p class="post-actions"><a href="#">Comment</a> - <a href="#">LikeBasic</button></a> - <a href="#">Follow</a> - <a
+                    href="#">Share</a></p> -->
+
+                <div class="comment-form">
+                  <form  [formGroup]="commentAddForm" (ngSubmit)="addComment(post)" class="form-inline">
+                    <div  class="form-group">
+                      <input type="text" formControlName="comment" class="form-control" placeholder="enter comment">
+                    </div>
+                    <button type="submit" class="btn btn-default">Add</button>
+                  </form>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="comments">
+                  <!-- <div class="comment">
+                    <a href="#" class="comment-avatar pull-left"><img  alt=""></a>
+                    <div class="comment-text">
+                      <p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
+                    </div>
+                  </div> -->
+                  <div class="clearfix"></div>
+                  <div>
+                    <!-- <a href="/profile/id"(click)="visitProfile()" class="active" class="post-avatar thumbnail"><img [src]="post.user?.url2" alt=""> -->
+                    <div class="form-group">
+                      <div class=comment-text>
+
+                        <div class="comment" *ngFor="let yorum of post.comments">
+                          <span (click)="visitProfile(yorum.userid)" class="comment-avatar pull-left"><img [src]="yorum.user?.url2" alt=""></span>
+                          <p href="/profile/id" style="color:rgb(55, 0, 255)"> {{yorum?.user?.firstName}}
+                            {{yorum?.user?.lastName}}</p>
+                          <div class="comment-text">
+                            <p>{{yorum?.comment}}</p>
+                          </div>
+                        </div>
+                        <!-- <p>I am just going to paste in a paragraph, then we will add another clearfix.</p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+
+
+        <div class="panel panel-default friends">
+          <div class="panel-heading">
+            <h3 class="panel-title">My Friends</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+              <li class="list-inline-item"><a href="profile.html" class="thumbnail"><img src="../assets/img/user.png"
+                    alt=""></a></li>
+            </ul>
+          </div> -->
+          <!-- <div class="clearfix"></div> -->
+
+
+        <!-- </div> -->
+<!-- 
+      </div> -->
+    </div>
+
+  </div>
+  <article>
+      <footer>
+          <p>© 2019 Facebook</p>
+      </footer>
+  </article>
+</section>
+<!-- <div class="panel panel-default groups">
+          <div class="panel-heading">
+            <h3 class="panel-title">Latest Groups</h3>
+          </div>
+          <div class="panel-body">
+            <div class="group-item">
+              <img src="../assets/img/group.png" alt="">
+              <h4><a href="#" class="">Sample Group One</a></h4>
+              <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="group-item">
+              <img src="../assets/img/group.png" alt="">
+              <h4><a href="#" class="">Sample Group Two</a></h4>
+              <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="group-item">
+              <img src="../assets/img/group.png" alt="">
+              <h4><a href="#" class="">Sample Group Three</a></h4>
+              <p>This is a paragraph of intro text, or whatever I want to call it.</p>
+            </div>
+            <div class="clearfix"></div>
+            <a href="#" class="btn btn-primary">View All Groups</a>
+          </div>
+        </div> -->

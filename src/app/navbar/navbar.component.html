@@ -1,0 +1,57 @@
+<header>
+    <img class="logo" src="../assets/img/facebook.png" alt=""   >
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light ">
+          <!-- <button (click)="fileInput.click()">Select File</button> -->
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="nav navbar-nav">
+                  <li class="nav-item"><a  class="nav-link" href="/home">Home</a></li>
+                  <li class="nav-item"><a *ngIf="isLoggedin()==false"  class="nav-link">Login</a></li>
+                  <li class="nav-item"><a class="nav-link"href="/profile">Profile</a></li>
+             <!-- <div  class="collapse navbar-collapse justify-content-end" id="navbarNav"> -->
+                <!-- <ul class="nav navbar-nav"> -->
+             <li class="nav-item"><a *ngIf="isLoggedin()==true"(click)="logOut()" class="nav justify-content-end" >Logout</a></li>
+                <!-- </ul></div> -->
+            </ul>
+          </div>
+            </nav>
+          <!-- <img src="img/logo.png" class="logo" alt=""> -->
+          <!-- <form class="form-inline">
+             
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputEmail3">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputPassword3">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button><br>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Remember me
+              </label>
+            </div>
+          </form> -->
+        </div>
+        
+      </header>
+      
+
+
+      <!-- <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="groups.html">Groups</a></li>
+            <li><a href="photos.html">Photos</a></li>
+            <li><a href="profile.html">Profile</a></li>
+          </ul>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+          </ul> -->

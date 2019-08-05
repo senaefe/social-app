@@ -1,0 +1,38 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <style>
+        
+        </style>
+        
+       
+   
+  </head>
+<!------ Include the above in your HEAD tag ---------->
+<body style='background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHaKrv_ZRJTifmTAiQYUxTjf_r-UkgAmRLP6oNR3I-UJGLynI4"); background-size: 100% 100%; '>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input type="text" #userName="ngModel" [(ngModel)]="user.userName" id="userName" class="fadeIn second" name="userName" placeholder="User Name" required autofocus>
+      <input type="text" #password="ngModel" [(ngModel)]="user.password" id="password" class="fadeIn third" name="password" placeholder="Password" required minlength="4">
+      <input class="fadeIn fourth"  type="submit" value="Log In" >
+      <input type="submit" class="fadeIn fifth" routerLink="/add-user" value="Sign up" >
+      <!-- <button class="btn btn-primary" routerLink="register" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button> -->
+      <!-- <input id="password" type="password" class="form-control" name="password" placeholder="Password"> -->
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+</body>
